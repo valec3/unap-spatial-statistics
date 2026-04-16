@@ -3,6 +3,7 @@
 # Metodología: CRISP-DM
 # =========================================================================
 cat("Iniciando Proceso Completo de Análisis Estratégico...\n")
+# setwd("C:/Users/User/Development/unap/stat-space/unap-spatial-statistics/analisis/01-ENA-analisis")
 
 source("01_ingestion.R")   # .sav -> .parquet + Verification
 source("02_processing.R")  # Summarization + Spatial Join
