@@ -6,7 +6,8 @@ paquetes <- c(
   "viridis",     # Paletas de colores accesibles
   "readxl",      # Leer archivos Excel
   "rnaturalearth", #
-  "data.table"
+  "data.table",
+  "arrow"
 )
 
 # Instalar los que no estén presentes y cargarlos todos
@@ -32,6 +33,9 @@ datos <- read_sav(
   col_select = all_of(variables_req), 
   encoding = "latin1"
 )
+write_parquet(datos, "data.parquet")
+getwd()
+datos <- read_parquet("D:\\descargas\\ENA_2014_2024\\data\\data.parquet")
 cat("Dimensiones brutas:", dim(datos), "\n")
 cat("Columnas disponibles con 'NOMBRE':\n")
 print(grep("NOMBRE", names(datos), value = TRUE))
@@ -256,17 +260,6 @@ write.csv(as.data.frame(resumen_depto),
           row.names = FALSE, fileEncoding = "UTF-8")
 
 cat("\n✓ Listo. Archivos guardados en:", ruta_salida, "\n")
-
-
-
-
-
-
-
-
-
-
-
 
 
 # -------------------------------------------------------------------------
