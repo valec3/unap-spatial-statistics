@@ -1,3 +1,4 @@
-# ignorar data  
-data/
+# ignorar data FILES EXCEL Y SAV  
+data/*.xlsx
+data/*.sav
 venv/
