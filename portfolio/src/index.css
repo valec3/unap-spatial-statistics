@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Michroma&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Geospatial Intelligence Hub — HUD Design System
+   All colors HSL. Tokens only. */
+
+@layer base {
+  :root {
+    /* Obsidian base */
+    --background: 240 30% 2%;
+    --foreground: 180 20% 92%;
+
+    --card: 240 25% 4%;
+    --card-foreground: 180 20% 92%;
+
+    --popover: 240 30% 3%;
+    --popover-foreground: 180 20% 92%;
+
+    /* Electric Cyan #00F2FF */
+    --primary: 184 100% 50%;
+    --primary-foreground: 240 30% 2%;
+
+    /* Lime Green #32CD32 */
+    --secondary: 120 61% 50%;
+    --secondary-foreground: 240 30% 2%;
+
+    --muted: 240 20% 8%;
+    --muted-foreground: 200 15% 55%;
+
+    --accent: 184 100% 50%;
+    --accent-foreground: 240 30% 2%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 184 60% 25%;
+    --input: 240 20% 10%;
+    --ring: 184 100% 50%;
+
+    --radius: 0.125rem;
+
+    /* HUD specific */
+    --hud-cyan: 184 100% 50%;
+    --hud-cyan-glow: 184 100% 60%;
+    --hud-lime: 120 61% 50%;
+    --hud-amber: 45 100% 55%;
+    --hud-grid: 220 30% 15%;
+    --hud-mesh: 230 25% 10%;
+    --hud-obsidian: 240 30% 2%;
+    --hud-panel: 240 25% 5%;
+
+    /* Gradients */
+    --gradient-radial: radial-gradient(ellipse at center, hsl(240 25% 6%) 0%, hsl(240 30% 2%) 70%);
+    --gradient-cyan: linear-gradient(135deg, hsl(184 100% 50% / 0.15), hsl(184 100% 50% / 0));
+    --gradient-scan: linear-gradient(180deg, transparent 0%, hsl(184 100% 50% / 0.08) 50%, transparent 100%);
+
+    /* Shadows / glows */
+    --glow-cyan: 0 0 20px hsl(184 100% 50% / 0.5), 0 0 40px hsl(184 100% 50% / 0.2);
+    --glow-cyan-soft: 0 0 12px hsl(184 100% 50% / 0.3);
+    --glow-lime: 0 0 16px hsl(120 61% 50% / 0.45);
+    --glow-master: 0 0 30px hsl(184 100% 50% / 0.6), 0 0 60px hsl(184 100% 50% / 0.3), inset 0 0 20px hsl(184 100% 50% / 0.1);
+
+    --shadow-panel: 0 0 0 1px hsl(184 60% 25% / 0.4), 0 8px 32px hsl(240 30% 0% / 0.6);
+
+    /* Transitions */
+    --transition-hud: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 240 30% 2%;
+    --sidebar-foreground: 180 20% 92%;
+    --sidebar-primary: 184 100% 50%;
+    --sidebar-primary-foreground: 240 30% 2%;
+    --sidebar-accent: 240 20% 8%;
+    --sidebar-accent-foreground: 180 20% 92%;
+    --sidebar-border: 184 60% 25%;
+    --sidebar-ring: 184 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+    background-image:
+      /* micro dots at 50px intersections */
+      radial-gradient(circle at center, hsl(var(--hud-cyan) / 0.25) 0.5px, transparent 1px),
+      /* 50px grid */
+      linear-gradient(hsl(var(--hud-grid) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--hud-grid) / 0.4) 1px, transparent 1px),
+      /* topographic vector mesh */
+      radial-gradient(ellipse 800px 400px at 20% 30%, hsl(var(--hud-mesh) / 0.6), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 80% 70%, hsl(230 30% 8% / 0.5), transparent 60%),
+      var(--gradient-radial);
+    background-size: 50px 50px, 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .hud-panel {
+    @apply relative bg-card/15 backdrop-blur-md border border-primary/30;
+    box-shadow: var(--shadow-panel);
+  }
+
+  .hud-panel-glow {
+    @apply hud-panel;
+    box-shadow: var(--shadow-panel), var(--glow-cyan-soft);
+  }
+
+  .hud-corner::before,
+  .hud-corner::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: hsl(var(--primary));
+    border-style: solid;
+  }
+  .hud-corner::before {
+    top: -1px; left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+  .hud-corner::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 1px 1px 0;
+  }
+
+  .hud-master {
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.6),
+      0 0 0 4px hsl(var(--background)),
+      0 0 0 5px hsl(var(--primary) / 0.4),
+      var(--glow-master);
+  }
+
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-scan);
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+  .scan-line:hover::after {
+    animation: scan 1.2s ease-in-out;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.6), 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .text-glow-lime {
+    text-shadow: 0 0 10px hsl(var(--secondary) / 0.6);
+  }
+
+  .terminal-text {
+    font-family: 'JetBrains Mono', monospace;
+    @apply text-secondary text-sm tracking-wide;
+  }
+
+  .label-tag {
+    font-family: 'JetBrains Mono', monospace;
+    @apply text-[10px] uppercase tracking-[0.2em] text-primary/70;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Syncopate', 'Michroma', sans-serif; letter-spacing: 0.08em; }
+  .font-mono-tech { font-family: 'JetBrains Mono', monospace; }
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    45% { opacity: 1; }
+    50% { opacity: 0.4; }
+    55% { opacity: 1; }
+  }
+
+  @keyframes draw-line {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.7); }
+    70% { box-shadow: 0 0 0 14px hsl(var(--primary) / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+  }
+
+  @keyframes boot-fade {
+    0% { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  @keyframes grid-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+  }
+
+  @keyframes ticker {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .animate-flicker { animation: flicker 2s infinite; }
+  .animate-boot { animation: boot-fade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .animate-pulse-ring { animation: pulse-ring 2s infinite; }
+  .animate-ticker { animation: ticker 1.5s ease-in-out infinite; }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-1000 { animation-delay: 1s; }
+}

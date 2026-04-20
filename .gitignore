@@ -1,4 +1,58 @@
-# ignorar data FILES EXCEL Y SAV  
+# ==============================
+# Proyecto: Estadistica Espacial
+# ==============================
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# --- Python / virtualenv ---
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# --- Node (portfolio) ---
+portfolio/node_modules/
+portfolio/dist/
+portfolio/.vite/
+portfolio/coverage/
+
+# --- R / analysis temporary files ---
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# --- Data (raw and heavy generated files) ---
 data/*.xlsx
 data/*.sav
-venv/
+data/*.parquet
+data/*.feather
+data/*.rds
+data/*.fst
+*.tmp
+
+# --- Spatial sidecar / cache ---
+*.qix
+*.lock
+
+# --- LaTeX build artifacts ---
+papers/**/*.aux
+papers/**/*.bbl
+papers/**/*.bcf
+papers/**/*.blg
+papers/**/*.fdb_latexmk
+papers/**/*.fls
+papers/**/*.log
+papers/**/*.out
+papers/**/*.run.xml
+papers/**/*.synctex.gz
+papers/**/*.synctex\(busy\)
+papers/**/*.toc
+
+# --- Keep source and metadata ---
+!papers/**/.gitkeep

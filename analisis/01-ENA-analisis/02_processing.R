@@ -6,6 +6,8 @@ source("00_setup.R")
 if (!file.exists(OUTPUT_PQ)) stop("No se encuentra el archivo Parquet. Corre 01_ingestion.R primero.")
 cat("\n>>> PASO 1: Cargando datos desde Parquet (Ultra rápido)...\n")
 datos <- as.data.table(read_parquet(OUTPUT_PQ))
+
+sample(datos)
 cat("\n>>> PASO 2: Limpieza y normalización de tipos...\n")
 # Convertir columnas a numéricas
 cols_numericas <- c("P14_TOTPARCELAS", "P14_TOTESPECIES", "P103", "P110_3", "P235", "P235A", "P236")
