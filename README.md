@@ -1,12 +1,9 @@
-# Estadistica Espacial - Portafolio del Curso
+# Portafolio del Curso de Estadistica Espacial
 
-Repositorio general del curso para centralizar todo el trabajo academico:
-- portfolio web del curso
-- 2 unidades con tareas
-- 2 papers (1 por unidad)
-- scripts de analisis espacial en R
+Este repositorio contiene las evidencias del curso de Estadistica Espacial (2026-I).
+El objetivo es que el docente pueda revisar rapidamente que entregables existen hoy y donde se ubican.
 
-## Informacion general
+## Datos del curso
 
 - **Universidad:** Universidad Nacional del Altiplano
 - **Facultad:** Ingenieria Estadistica e Informatica
@@ -16,92 +13,65 @@ Repositorio general del curso para centralizar todo el trabajo academico:
 - **Codigo:** 217397
 - **Ciclo:** 2026-I
 
-Referencia: los datos institucionales fueron tomados de `portfolio/src/components/hud/Hero.tsx`.
+## Contenido actual del repositorio (verificado)
 
-## Objetivo del repositorio
+### 1) Unidad 01
 
-Este repositorio funciona como portafolio oficial del curso. La idea es mantener en un solo lugar:
-- evidencias de aprendizaje por unidad
-- entregas de tareas en formato reproducible
-- papers con su material fuente
-- presentacion web del proyecto academico
+- `unidades/unidad-01/tareas/tarea-01/main.tex` - Monografia de la Tarea 01.
+- `unidades/unidad-01/tareas/tarea-01/references.bib` - Referencias bibliograficas de la Tarea 01.
+- `unidades/unidad-01/tareas/tarea-02-ena/` - Desarrollo completo de la Tarea 02 (analisis ENA en R), incluye:
+  - scripts `00_setup.R`, `01_ingestion.R`, `02_processing.R`, `03_reporting.R`, `master.R`
+  - insumos espaciales (`.shp`, `.dbf`, `.shx`, etc.)
+  - resultados en `results/` (mapas e indicadores)
+  - documento de insights `04_insights.md`
 
-## Estructura
+### 2) Unidad 02
+
+- `unidades/unidad-02/tareas/` - Carpeta creada para futuras entregas (sin tareas registradas aun).
+
+### 3) Papers
+
+- `papers/01-review/main.tex` - Borrador de paper en LaTeX.
+- `papers/01-review/bib` - Archivo bibliografico actual del borrador.
+- `papers/02/` - Carpeta preparada para contenido de paper de la segunda unidad.
+
+### 4) Portafolio web
+
+- `portfolio/` - Sitio del curso (React + Vite + TypeScript), con secciones de unidades y tareas.
+
+### 5) Datos
+
+- `data/` - Datos fuente del trabajo ENA.
+
+## Estructura resumida
 
 ```text
 ENA_2014_2024/
 |- README.md
 |- .gitignore
-|- data/                          # Datos fuente (no versionar pesados)
-|- analisis/
-|  |- 02-/                        # Carpeta auxiliar (legacy)
-|- unidades/
-|  |- unidad-01/
-|  |  |- tareas/
-|  |     |- tarea-01/             # Monografia (main.tex + references.bib)
-|  |     |- tarea-02-ena/         # Analisis ENA (Tarea 02)
-|  |- unidad-02/
-|     |- tareas/                  # Tareas de la Unidad 2
+|- data/
 |- papers/
-|  |- unidad-01/                  # Paper final Unidad 1
-|  |- unidad-02/                  # Paper final Unidad 2
-|  |- 01-review/                  # Borradores / trabajo previo
-|- portfolio/                     # Sitio portfolio (React + Vite + TypeScript)
+|  |- 01-review/
+|  |- 02/
+|- portfolio/
+|- unidades/
+   |- unidad-01/
+   |  |- tareas/
+   |     |- tarea-01/
+   |     |- tarea-02-ena/
+   |- unidad-02/
+      |- tareas/
 ```
 
-## Plan academico
+## Como ejecutar
 
-### Unidad 1 - Fundamentos y Autocorrelacion Espacial
-
-- [ ] Tarea 01: Introduccion a datos geoespaciales
-- [ ] Tarea 02: Matrices de vecindad espacial
-- [ ] Tarea 03: Indice de Moran global y local
-- [ ] Tarea 04: Analisis exploratorio espacial
-- [ ] Tarea 05: Procesos puntuales espaciales
-- [ ] Tarea 06: Visualizacion cartografica avanzada
-- [ ] Paper U1
-
-### Unidad 2 - Geoestadistica y Modelado Espacial
-
-- [ ] Tarea 01: Variograma experimental
-- [ ] Tarea 02: Kriging ordinario
-- [ ] Tarea 03: Validacion cruzada espacial
-- [ ] Tarea 04: Modelos SAR y SEM
-- [ ] Tarea 05: Regresion geograficamente ponderada (GWR)
-- [ ] Tarea 06: Reportes reproducibles geoespaciales
-- [ ] Paper U2
-
-## Ejecucion local
-
-### Portfolio (web)
-
-```bash
-cd portfolio
-npm install
-npm run dev
-```
-
-### Analisis en R
+### Tarea 02 (ENA) en R
 
 ```r
-setwd("unidades/unidad-01/tareas/tarea-02-ena")
+setwd("unidades/unidad-01/tareas/tarea-02-ena") # RUTA DONDE ESTA EL PROYECTO
 source("master.R")
 ```
 
-## Convenciones de trabajo
+## Nota
 
-- Guardar cada entrega en su unidad: `unidades/unidad-0X/tareas/`.
-- La Tarea 01 de Unidad 1 vive en `unidades/unidad-01/tareas/tarea-01/`.
-- La Tarea 02 de Unidad 1 (ENA) vive en `unidades/unidad-01/tareas/tarea-02-ena/`.
-- Guardar cada paper final en `papers/unidad-0X/`.
-- Usar `papers/01-review/` para borradores o versiones intermedias.
-- Evitar subir datos grandes y archivos temporales (controlado en `.gitignore`).
-
-## Publicacion del portafolio
-
-Cuando el sitio este listo, agregar aqui el enlace de despliegue:
-- GitHub Pages / Netlify / Vercel
-
-## Licencia
-
-Uso academico - curso de Estadistica Espacial.
+El contenido de este README describe solo lo que existe actualmente en el repositorio.
