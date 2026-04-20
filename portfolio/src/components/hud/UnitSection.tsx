@@ -11,6 +11,8 @@ type Task = {
   variant?: "heatmap" | "cluster" | "mesh" | "vector";
   master?: boolean;
   badge?: string;
+  pdfUrl?: string;
+  repoUrl?: string;
 };
 
 type Props = {
@@ -20,9 +22,20 @@ type Props = {
   goals: string[];
   tasks: Task[];
   article: Task;
+  period?: string; // New
+  progressPercent?: number; // New
 };
 
-const UnitSection = ({ unitNumber, unitTitle, monitorTitle, goals, tasks, article }: Props) => {
+const UnitSection = ({
+  unitNumber,
+  unitTitle,
+  monitorTitle,
+  goals,
+  tasks,
+  article,
+  period,
+  progressPercent,
+}: Props) => {
   return (
     <section className="relative py-20 md:py-28">
       {/* Watermark */}
@@ -60,7 +73,13 @@ const UnitSection = ({ unitNumber, unitTitle, monitorTitle, goals, tasks, articl
 
         {/* Status Monitor */}
         <div className="mb-10 animate-fade-in">
-          <StatusMonitor unitId={`U-${unitNumber}`} title={monitorTitle} goals={goals} />
+          <StatusMonitor 
+            unitId={`U-${unitNumber}`} 
+            title={monitorTitle} 
+            goals={goals} 
+            period={period}
+            progressPercent={progressPercent}
+          />
         </div>
 
         {/* Master Article */}

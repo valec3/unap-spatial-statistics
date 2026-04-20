@@ -6,15 +6,18 @@ import UnitSection from "@/components/hud/UnitSection";
 import Footer from "@/components/hud/Footer";
 
 const unit01Goals = [
-  "Comprender los fundamentos de la estadística espacial y su aplicación en geociencias.",
-  "Manejar estructuras de datos georreferenciados y sistemas de coordenadas.",
-  "Aplicar técnicas exploratorias de análisis espacial (ESDA).",
-  "Identificar patrones de autocorrelación espacial mediante el índice de Moran.",
-  "Construir matrices de pesos espaciales (W) bajo distintos criterios de vecindad.",
+  "Estadística espacial descriptiva y conceptos básicos.",
+  "Diferenciación de tipos de datos: Vectorial y Raster.",
+  "Sistemas de coordenadas, datum, proyecciones y UTM.",
+  "Evaluación de calidad e integridad de datos espaciales.",
+  "Gestión de Geodatabases y ETL con PostGIS/PostgreSQL.",
+  "Preprocesamiento, geocodificación y topología (OpenRefine).",
+  "Análisis de patrones espaciales y densidad (GeoDa).",
+  "Visualización cartográfica y diseño con QGIS.",
 ];
 
 const unit02Goals = [
-  "Modelar superficies continuas mediante interpolación geoestadística (Kriging).",
+  "Modelado de superficies continuas mediante interpolación geoestadística (Kriging).",
   "Estimar y validar variogramas experimentales y teóricos.",
   "Implementar modelos espaciales de regresión (SAR, SEM, GWR).",
   "Evaluar la heterogeneidad espacial y la dependencia local.",
@@ -23,64 +26,46 @@ const unit02Goals = [
 
 const unit01Tasks = [
   {
-    taskId: "TSK-LOG-01",
-    date: "2026.03.04",
-    title: "Introducción a Datos Geoespaciales",
+    taskId: "TSK-U1-01",
+    date: "10/04/2026",
+    title: "Vectores & Shapes",
     description:
-      "Lectura, proyección y visualización de capas vectoriales y raster con sf y terra.",
-    fileSize: "1.4 MB",
-    computeTime: "0.42s",
+      "Monografía detallada sobre vectores y shapes. Mínimo 3 páginas con al menos 5 fuentes bibliográficas (IEEE, Scopus) incluyendo DOI.",
+    fileSize: "2.4 MB",
+    computeTime: "0.15s",
     variant: "vector" as const,
+    pdfUrl: "https://github.com/valec3/unap-spatial-statistics/tree/main/unidades/unidad-01/tareas/tarea-01",
+    repoUrl: "https://github.com/valec3/unap-spatial-statistics/tree/main/unidades/unidad-01/tareas/tarea-01",
   },
   {
-    taskId: "TSK-LOG-02",
-    date: "2026.03.11",
-    title: "Matrices de Vecindad Espacial",
+    taskId: "TSK-U1-02",
+    date: "19/04/2026",
+    title: "Ubicación Espacial - Análisis ENA",
     description:
-      "Construcción de matrices W tipo Queen, Rook y K-NN sobre el departamento de Puno.",
-    fileSize: "880 KB",
-    computeTime: "0.31s",
-    variant: "mesh" as const,
-  },
-  {
-    taskId: "TSK-LOG-03",
-    date: "2026.03.18",
-    title: "Índice de Moran Global y Local",
-    description:
-      "Detección de autocorrelación espacial y clusters LISA en variables socioeconómicas.",
-    fileSize: "2.1 MB",
-    computeTime: "1.08s",
-    variant: "cluster" as const,
-  },
-  {
-    taskId: "TSK-LOG-04",
-    date: "2026.03.25",
-    title: "Análisis Exploratorio Espacial",
-    description:
-      "Mapas de calor, diagramas de dispersión espaciales y detección de hot/cold spots.",
-    fileSize: "1.9 MB",
-    computeTime: "0.77s",
+      "Análisis de ubicación espacial para 3 variables de la Encuesta Nacional Agraria. Incluye procesamiento en R y generación de mapas temáticos.",
+    fileSize: "12.8 MB",
+    computeTime: "4.2s",
     variant: "heatmap" as const,
+    pdfUrl: "https://github.com/valec3/unap-spatial-statistics/blob/main/unidades/unidad-01/tareas/tarea-02-ena/informe/Informe_Tarea02_ENA.pdf.pdf",
+    repoUrl: "https://github.com/valec3/unap-spatial-statistics/tree/main/unidades/unidad-01/tareas/tarea-02-ena",
   },
   {
-    taskId: "TSK-LOG-05",
-    date: "2026.04.01",
-    title: "Procesos Puntuales Espaciales",
-    description:
-      "Estimación de intensidad mediante kernels y función K de Ripley.",
-    fileSize: "1.2 MB",
-    computeTime: "0.54s",
+    taskId: "TSK-U1-03",
+    date: "2026.04.28",
+    title: "Tarea 03 - Placeholder",
+    description: "Espacio reservado para la siguiente entrega de la Unidad 01.",
+    fileSize: "0 KB",
+    computeTime: "0.0s",
     variant: "cluster" as const,
   },
   {
-    taskId: "TSK-LOG-06",
-    date: "2026.04.08",
-    title: "Visualización Cartográfica Avanzada",
-    description:
-      "Diseño de mapas temáticos reproducibles con tmap y leaflet interactivo.",
-    fileSize: "3.0 MB",
-    computeTime: "1.21s",
-    variant: "vector" as const,
+    taskId: "TSK-U1-04",
+    date: "2026.05.05",
+    title: "Tarea 04 - Placeholder",
+    description: "Espacio reservado para la siguiente entrega de la Unidad 01.",
+    fileSize: "0 KB",
+    computeTime: "0.0s",
+    variant: "mesh" as const,
   },
 ];
 
@@ -204,21 +189,23 @@ const Index = () => {
 
         <UnitSection
           unitNumber="01"
-          unitTitle="FUNDAMENTOS · AUTOCORRELACIÓN"
-          monitorTitle="Logros de Aprendizaje — Análisis Exploratorio Espacial"
+          unitTitle="GEOCIENCIAS · ELT · TIGS"
+          monitorTitle="Investigación preliminar basada en el análisis exploratorio de datos espaciales."
           goals={unit01Goals}
           tasks={unit01Tasks}
           article={unit01Article}
+          period="30 de Marzo al 25 de Mayo del 2026"
+          progressPercent={20}
         />
 
-        <UnitSection
+        {/* <UnitSection
           unitNumber="02"
           unitTitle="GEOESTADÍSTICA · MODELADO"
           monitorTitle="Logros de Aprendizaje — Modelado e Interpolación Espacial"
           goals={unit02Goals}
           tasks={unit02Tasks}
           article={unit02Article}
-        />
+        /> */}
 
         <Footer />
       </main>

@@ -1,3 +1,4 @@
+import { FileText, Github } from "lucide-react";
 import HeatmapThumb from "./HeatmapThumb";
 
 type Props = {
@@ -10,7 +11,8 @@ type Props = {
   variant?: "heatmap" | "cluster" | "mesh" | "vector";
   master?: boolean;
   badge?: string;
-  href?: string;
+  pdfUrl?: string; // Updated
+  repoUrl?: string; // Updated
   index?: number;
 };
 
@@ -24,12 +26,12 @@ const TaskTile = ({
   variant = "heatmap",
   master = false,
   badge,
-  href = "#",
+  pdfUrl,
+  repoUrl,
   index = 0,
 }: Props) => {
   return (
-    <a
-      href={href}
+    <div
       className={`group relative block scan-line transition-all duration-300 ${
         master
           ? "hud-panel hud-master p-6 md:p-7"
@@ -90,11 +92,33 @@ const TaskTile = ({
           <span className="h-1.5 w-1.5 bg-secondary animate-flicker" />
           <span className="terminal-text text-[10px]">READY</span>
         </div>
-        <span className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-[0.2em] border border-primary text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[var(--glow-cyan)] transition-all">
-          ▸ EXECUTE
-        </span>
+        
+        <div className="flex items-center gap-2">
+          {pdfUrl && (
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-[var(--glow-cyan)] transition-all"
+              title="Ver PDF"
+            >
+              <FileText className="w-4 h-4" />
+            </a>
+          )}
+          {repoUrl && (
+            <a
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded border border-secondary/30 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-[var(--glow-lime)] transition-all"
+              title="Ver Código"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          )}
+        </div>
       </div>
-    </a>
+    </div>
   );
 };
 
