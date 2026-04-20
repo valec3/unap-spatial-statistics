@@ -29,8 +29,8 @@ invisible(lapply(paquetes, library, character.only = TRUE))
 # La raíz es donde se encuentra el archivo .Rproj o la carpeta principal
 INPUT_SAV  <- here("data/ENA_2014_2024.sav")
 OUTPUT_PQ  <- here("data/ENA_2014_2024.parquet")
-SHAPEFILE  <- here("analisis/01-ENA-analisis/DEPARTAMENTOS_inei_geogpsperu_suyopomalia.shp")
-RESULTS_DIR <- here("analisis/01-ENA-analisis/results")
+SHAPEFILE  <- here("unidades/unidad-01/tareas/tarea-02-ena/DEPARTAMENTOS_inei_geogpsperu_suyopomalia.shp")
+RESULTS_DIR <- here("unidades/unidad-01/tareas/tarea-02-ena/results")
 
 # Crear directorio de resultados si no existe
 if (!dir.exists(RESULTS_DIR)) dir.create(RESULTS_DIR, recursive = TRUE)

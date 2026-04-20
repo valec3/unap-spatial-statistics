@@ -34,10 +34,12 @@ ENA_2014_2024/
 |- .gitignore
 |- data/                          # Datos fuente (no versionar pesados)
 |- analisis/
-|  |- 01-ENA-analisis/            # Pipeline principal en R
+|  |- 02-/                        # Carpeta auxiliar (legacy)
 |- unidades/
 |  |- unidad-01/
-|  |  |- tareas/                  # Tareas de la Unidad 1
+|  |  |- tareas/
+|  |     |- tarea-01/             # Monografia (main.tex + references.bib)
+|  |     |- tarea-02-ena/         # Analisis ENA (Tarea 02)
 |  |- unidad-02/
 |     |- tareas/                  # Tareas de la Unidad 2
 |- papers/
@@ -82,13 +84,15 @@ npm run dev
 ### Analisis en R
 
 ```r
-setwd("analisis/01-ENA-analisis")
+setwd("unidades/unidad-01/tareas/tarea-02-ena")
 source("master.R")
 ```
 
 ## Convenciones de trabajo
 
 - Guardar cada entrega en su unidad: `unidades/unidad-0X/tareas/`.
+- La Tarea 01 de Unidad 1 vive en `unidades/unidad-01/tareas/tarea-01/`.
+- La Tarea 02 de Unidad 1 (ENA) vive en `unidades/unidad-01/tareas/tarea-02-ena/`.
 - Guardar cada paper final en `papers/unidad-0X/`.
 - Usar `papers/01-review/` para borradores o versiones intermedias.
 - Evitar subir datos grandes y archivos temporales (controlado en `.gitignore`).

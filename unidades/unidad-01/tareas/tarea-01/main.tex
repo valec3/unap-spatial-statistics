@@ -1,0 +1,134 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Preamble ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{cite}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    pdftitle={Vectores y Rasters en Estadistica Espacial},
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\large \textbf{UNIVERSIDAD NACIONAL DEL ALTIPLANO} \par}
+    \vspace{0.5cm}
+    {\large \textbf{FACULTAD DE INGENIERIA ESTADISTICA E INFORMATICA} \par}
+    \vspace{0.4cm}
+    {\large \textbf{Escuela Profesional de Ingenieria Estadistica e Informatica} \par}
+
+    \vspace{1.5cm}
+    \includegraphics[width=0.4\textwidth]{logo_unap.png}\par
+    \vspace{1.5cm}
+
+    {\Large \textbf{MONOGRAFIA} \par}
+    \vspace{0.5cm}
+    {\large \textbf{Vectores y Rasters en el Contexto de la Estadistica Espacial: Conceptos y Analisis Comparativo} \par}
+
+    \vfill
+    {\large \textbf{Presentado por:} \par}
+    {\large \textbf{Victor Raul Maye Mamani} \par}
+    \vfill
+    {\large \textbf{Docente:} \par}
+    {\large \textbf{TORRES CRUZ FRED} \par}
+    \vfill
+    {\large Puno, Peru \par}
+    {\large \today \par}
+\end{titlepage}
+
+\newpage
+
+\begin{abstract}
+Este trabajo analiza los paradigmas fundamentales de representacion de datos espaciales: el modelo vectorial y el modelo raster. Se examina el concepto matematico de vector (magnitud y direccion, coordenadas en $\mathbb{R}^n$) y su aplicacion en sistemas de informacion geografica mediante puntos, lineas y poligonos. Asimismo, se aborda el modelo raster como cuadricula de celdas para datos continuos. En el ambito de la estadistica espacial, se contrasta el uso de lattices para analisis de autocorrelacion con el modelado de superficies mediante semivariogramas y kriging. Se presenta un analisis comparativo que fundamenta la eleccion del modelo segun la naturaleza del fenomeno geografico.
+\end{abstract}
+
+\section*{Palabras Clave}
+Vector, Raster, Estadistica Espacial, Geoinformacion, Ingenieria Estadistica.
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduccion}
+En la estadistica espacial, la representacion de la realidad geografica se divide en dos enfoques ontologicos primarios: el vectorial y el raster. Como establece Cressie \cite{cressie1993statistics}, la estructura de datos elegida no solo actua como contenedor de informacion, sino que predetermina el modelo estadistico aplicable, condicionando desde la estimacion de parametros hasta la modelizacion de la autocorrelacion.
+
+\section{El Modelo de Datos Vectorial}
+
+Un vector es una cantidad que posee tanto magnitud como direccion \cite{simons1970vector}. Matematicamente, constituye una lista finita de numeros reales denominados componentes o coordenadas \cite{shapira2019vectors}.
+
+En el plano cartesiano bidimensional, un vector se denota como el par $(x, y) \in \mathbb{R}^2$. En el espacio tridimensional, se representa como el trio $(x, y, z) \in \mathbb{R}^3$ \cite{shapira2019vectors}. Las operaciones aritmeticas lineales que definen el espacio vectorial incluyen la adicion y la multiplicacion por un escalar.
+
+En sistemas de informacion geografica, un sistema vectorial registra las coordenadas espaciales $(x, y)$ de los elementos que conforman un mapa \cite{osullivan2010geographic}. Cada objeto geografico se representa mediante elementos geometricos discretos:
+
+\begin{itemize}
+    \item \textbf{Puntos}: Localizaciones adimensionales que representan entidades con posicion pero sin extension \cite{yang2014principles}.
+    \item \textbf{Lineas}: Sucesiones de vertices conectados que modelan redes y flujos \cite{bivand2013applied}.
+    \item \textbf{Poligonos}: Areas cerradas que delimitan fenomenos con limites nitidos \cite{yang2014principles}.
+\end{itemize}
+
+Este modelo resulta particularmente util para almacenar y representar datos con fronteras discretas, tales como limites internacionales, calles, edificaciones, entre otros \cite{das2022application}. Los sistemas vectoriales ofrecen alta precision, pequeno volumen de datos y buena calidad topologica \cite{yao2018big}.
+
+En el ambito de la estadistica espacial, el modelo vectorial se emplea para el analisis de \textbf{datos de area o lattices}. Anselin \cite{anselin1988spatial} fundamenta el analisis de autocorrelacion sobre estas unidades discretas, donde la matriz de pesos espaciales ($W$) se construye a partir de la topologia de los poligonos. Este enfoque permite cuantificar la interdependencia entre unidades administrativas o censales de manera rigurosa.
+
+\section{El Modelo de Datos Raster}
+
+El modelo raster representa el mundo como una superficie dividida en cuadrados o celdas regulares de una cuadricula, donde cada celda posee un valor asociado que representa un atributo o fenomeno especifico \cite{giofandi2023comparison}. Se utiliza tipicamente para registrar informacion de naturaleza continua como elevacion, temperatura o radiacion electromagnetica \cite{pingel2018raster}.
+
+El termino raster proviene de la palabra alemana para pantalla, implicando lineas paralelas orientadas ortogonalmente. Su origen como descripcion de imagenes proviene de los haces de electrones en pantallas de tubo de rayos catodicos en la television analogica \cite{pingel2018raster}. Los componentes fundamentales de este modelo son:
+
+\begin{itemize}
+    \item \textbf{Cuadricula o Matriz}: Patron regular de filas y columnas, donde cada elemento se denomina celda, pixel o punto de cuadricula \cite{pingel2018raster}.
+    \item \textbf{Pixel}: Unidad mas pequena del raster, que almacena un valor representando informacion tal como elevacion, temperatura o humedad \cite{bajjali2017working}.
+    \item \textbf{Resolucion}: El nivel de detalle depende del tamano de celda o resolucion espacial \cite{bajjali2017working}.
+\end{itemize}
+
+Este formato es adecuado para superficies continuas como temperatura, elevacion y humedad \cite{bajjali2017working}. Un punto vectorial puede aproximarse a una unica celda raster; una linea vectorial, a una secuencia de celdas raster; y un poligono vectorial, a una zona de celdas que cubren su area \cite{bajjali2017working}.
+
+En el ambito de la estadistica espacial, el modelo raster constituye el marco para el analisis de \textbf{superficies estocasticas y variables regionales}. Cressie \cite{cressie1993statistics} demuestra que esta estructura facilita el modelado de la dependencia espacial continua a traves de semivariogramas y procesos de interpolacion kriging.
+
+Adicionalmente, Tomlin \cite{tomlin1990geographic} establecio el \textbf{Algebra de Mapas}, un marco que permite operaciones matematicas directas entre matrices de datos. Los procesos raster suelen ser significativamente mas rapidos computacionalmente que los vectoriales \cite{bajjali2017working}.
+
+\section{Analisis Comparativo}
+
+Los datos vectoriales y raster son dos tipos fundamentales de estructuras de datos utilizados en SIG \cite{maesen2024introduction}. Los datos vectoriales representan entidades discretas mediante coordenadas de vertices, siendo adecuados para mediciones discretas y geometrias complejas; mientras que los datos raster representan informacion como una cuadricula de celdas donde cada una contiene un valor que representa un atributo especifico \cite{maesen2024introduction}.
+
+La diferencia principal entre una fotografia digital y una representacion SIG radica en que en un SIG se especifica la ubicacion geografica de las celdas y su tamano \cite{giofandi2023comparison}.
+
+Los datos vectoriales son utiles para almacenar datos con fronteras discretas como limites de edificaciones, carreteras y ubicaciones de puntos \cite{giofandi2023comparison}. Por su parte, los datasets raster almacenan representaciones continuas de datos como eventos climaticos o proyecciones de elevacion, donde la cuadricula representa propiedades o fenomenos fisicos del mundo \cite{giofandi2023comparison}.
+
+En comparacion con el modelo raster, el modelo vectorial tiene las ventajas de alta precision, menor volumen de datos y buena calidad topologica \cite{yao2018big}.
+
+\begin{table}[H]
+\centering
+\caption{Diferencias Tecnicas entre Modelos Vectorial y Raster}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Atributo} & \textbf{Modelo Vectorial} & \textbf{Modelo Raster} \\ \midrule
+Ontologia & Objeto Discreto & Campo Continuo \\
+Unidad Primaria & Vertice / Coordenada & Celda / Pixel \\
+Aplicacion Estadistica & Autocorrelacion de areas & Geoestadistica de superficies \\
+Eficiencia & Alta en topologia y redes & Alta en analisis matricial \\ \bottomrule
+\end{tabular}
+\end{table}
+
+La investigacion avanzada requiere la integracion de ambos modelos. Se utilizan superficies raster de variables ambientales para cruzamientos con poligonos vectoriales administrativos, permitiendo promedios zonales y caracterizacion estadistica de territorios especificos \cite{giofandi2023comparison}.
+
+\section{Conclusion}
+La eleccion entre el modelo vectorial y el raster depende de la naturaleza del fenomeno geografico y del objetivo analitico del investigador. Mientras que el vector sobresale en la delimitacion de identidades y topologia, el raster es el estandar para el analisis de campos continuos. La integracion de ambos paradigmas garantiza un analisis espacial integro y una toma de decisiones informada.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
