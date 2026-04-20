@@ -10,7 +10,8 @@ const Hero = () => {
           <div className="hidden sm:block border-l border-primary/30 pl-4">
             <div className="label-tag text-primary">FACULTAD</div>
             <div className="font-display text-[10px] md:text-xs text-foreground leading-tight">
-              ESTADÍSTICA<br />E INFORMÁTICA
+              ESTADÍSTICA
+              <br />E INFORMÁTICA
             </div>
           </div>
         </div>
@@ -30,7 +31,9 @@ const Hero = () => {
           <div className="hidden sm:block border-r border-primary/30 pr-4 text-right">
             <div className="label-tag text-primary">UNIVERSIDAD</div>
             <div className="font-display text-[10px] md:text-xs text-foreground leading-tight">
-              NACIONAL<br />DEL ALTIPLANO
+              NACIONAL
+              <br />
+              DEL ALTIPLANO
             </div>
           </div>
           <UnaSeal className="w-14 h-14 md:w-16 md:h-16 text-foreground/90" />
@@ -52,7 +55,7 @@ const Hero = () => {
         </div>
 
         <div className="text-center animate-boot delay-300">
-          <div className="label-tag mb-4">[ COURSE_MODULE // 2026-I ]</div>
+          <div className="label-tag mb-8">[ COURSE_MODULE // 2026-I ]</div>
 
           <h1 className="font-display font-bold text-foreground text-[12vw] md:text-[8.5vw] leading-[0.95] tracking-[0.04em] text-glow">
             ESTADÍSTICA
@@ -80,13 +83,17 @@ const Hero = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <div className="label-tag text-muted-foreground mb-1">AUTHOR_ID</div>
+              <div className="label-tag text-muted-foreground mb-1">
+                AUTHOR_ID
+              </div>
               <div className="font-mono text-secondary text-glow-lime text-sm md:text-base">
                 [ VICTOR RAUL MAYE MAMANI ]
               </div>
             </div>
             <div className="sm:text-right">
-              <div className="label-tag text-muted-foreground mb-1">SYSTEM_CODE</div>
+              <div className="label-tag text-muted-foreground mb-1">
+                SYSTEM_CODE
+              </div>
               <div className="font-mono text-secondary text-glow-lime text-sm md:text-base">
                 [ 217397 ]
               </div>
