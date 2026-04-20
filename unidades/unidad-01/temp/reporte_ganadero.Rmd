@@ -1,0 +1,104 @@
+---
+title: "Reporte Ganadero Julio 2025 - UNAP"
+output: 
+  html_document:
+    theme:
+      version: 5
+      bootswatch: zephyr
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+
+# Datos
+resumen <- read_csv("Output/Resumen_KPIs_Julio2025.csv", show_col_types = FALSE)
+
+# Colores institucionales / Power BI
+colors_repro <- c("Preñada" = "#f39c12", "Vacía" = "#e74c3c")
+colors_prod <- c("Ordeño" = "#2ecc71", "Seca" = "#34495e")
+colors_pob <- c("Vacas Total" = "#002a54", "Recría Total" = "#3498db")
+```
+
+<style>
+.kpi-box {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  margin-bottom: 20px;
+}
+.kpi-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0056b3;
+}
+.kpi-title {
+  font-size: 14px;
+  color: #6c757d;
+  text-transform: uppercase;
+}
+</style>
+
+<div class="row">
+  <div class="col-md-4 kpi-box">
+    <div class="kpi-title">DEL Promedio</div>
+    <div class="kpi-value">`r resumen$DEL_Promedio`</div>
+  </div>
+  <div class="col-md-4 kpi-box">
+    <div class="kpi-title">Lactación Promedio</div>
+    <div class="kpi-value">`r resumen$Lactacion_Promedio`</div>
+  </div>
+  <div class="col-md-4 kpi-box">
+    <div class="kpi-title">Población Total</div>
+    <div class="kpi-value">`r resumen$Poblacion_Total`</div>
+  </div>
+</div>
+
+## Resumen Reproductivo y Productivo
+
+```{r charts, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=8}
+# Pie Chart 1: Preñez
+df1 <- data.frame(Cat = c("Preñada", "Vacía"), Val = c(resumen$Vacas_Preniadas, resumen$Vacas_Vacias))
+p1 <- ggplot(df1, aes(x="", y=Val, fill=Cat)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  scale_fill_manual(values=colors_repro) +
+  labs(title="Estado de Preñez")
+
+# Pie Chart 2: Ordeño
+df2 <- data.frame(Cat = c("Ordeño", "Seca"), Val = c(resumen$Vacas_Ordenio, resumen$Vacas_Secas))
+p2 <- ggplot(df2, aes(x="", y=Val, fill=Cat)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  scale_fill_manual(values=colors_prod) +
+  labs(title="Estado de Producción")
+
+# Pie Chart 3: Población
+df3 <- data.frame(Cat = c("Vacas Total", "Recría Total"), Val = c(resumen$Vacas_Total, resumen$Recria_Total))
+p3 <- ggplot(df3, aes(x="", y=Val, fill=Cat)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  scale_fill_manual(values=colors_pob) +
+  labs(title="Población Total")
+
+library(gridExtra)
+grid.arrange(p1, p2, p3, ncol=2)
+```
+
+## Variables Climáticas (Julio 2025)
+
+```{r clima, echo=FALSE}
+resumen %>%
+  select(Temp_Min, Temp_Max, ITH_Min, ITH_Max, Humedad_Prom) %>%
+  kable(caption = "Indicadores de Estrés Calórico y Clima", format = "html")
+```
+
+---
+*Reporte generado automáticamente para la Universidad Nacional del Altiplano (UNAP).*
+*Código de Ubicación: `r resumen$Codigo`*
