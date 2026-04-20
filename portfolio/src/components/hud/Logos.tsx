@@ -10,7 +10,7 @@ export const FaculdadLogo = ({ className = "" }: { className?: string }) => (
 
 export const UnaSeal = ({ className = "" }: { className?: string }) => (
   <img
-    src="/logo_unap.png"
+    src="/logo-unap.png"
     alt="Escudo de la Universidad Nacional del Altiplano"
     className={className}
     loading="eager"
