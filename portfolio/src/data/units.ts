@@ -8,6 +8,7 @@ export type Task = {
   variant: "heatmap" | "cluster" | "mesh" | "vector";
   pdfUrl?: string;
   repoUrl?: string;
+  webUrl?: string;
   imageUrl?: string;
   badge?: string;
   stack?: string[]; // New: Technologies used
@@ -80,6 +81,7 @@ export const unit01: Unit = {
       variant: "cluster",
       pdfUrl: "https://github.com/valec3/unap-spatial-statistics/blob/main/unidades/unidad-01/tareas/tarea-03/README.md",
       repoUrl: "https://github.com/valec3/unap-spatial-statistics/tree/main/unidades/unidad-01/tareas/tarea-03",
+      webUrl: "https://s0vy85-victor0maye.shinyapps.io/tarea-03/",
       imageUrl: "/previews/task-03.webp",
       stack: ["R Shiny", "Regex", "Business Intelligence"],
     },

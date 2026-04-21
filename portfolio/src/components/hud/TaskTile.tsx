@@ -1,4 +1,4 @@
-import { FileText, Github } from "lucide-react";
+import { FileText, Github, ExternalLink } from "lucide-react";
 import HeatmapThumb from "./HeatmapThumb";
 
 type Props = {
@@ -13,6 +13,7 @@ type Props = {
   badge?: string;
   pdfUrl?: string; // Updated
   repoUrl?: string; // Updated
+  webUrl?: string;
   imageUrl?: string;
   index?: number;
   onClick?: () => void;
@@ -30,6 +31,7 @@ const TaskTile = ({
   badge,
   pdfUrl,
   repoUrl,
+  webUrl,
   imageUrl,
   index = 0,
   onClick,
@@ -117,6 +119,18 @@ const TaskTile = ({
               title="Ver PDF"
             >
               <FileText className="w-4 h-4" />
+            </a>
+          )}
+          {webUrl && (
+            <a
+              href={webUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="p-1.5 rounded border border-accent/30 text-accent hover:bg-accent hover:text-accent-foreground hover:shadow-[0_0_15px_hsl(var(--accent))] transition-all"
+              title="Lanzar Web/Dashboard"
+            >
+              <ExternalLink className="w-4 h-4" />
             </a>
           )}
           {repoUrl && (

@@ -1,4 +1,4 @@
-import { X, FileText, Github, Cpu, Calendar, Database } from "lucide-react";
+import { X, FileText, Github, Cpu, Calendar, Database, ExternalLink } from "lucide-react";
 import { Task } from "@/data/units";
 import { useEffect } from "react";
 
@@ -129,6 +129,20 @@ const ProjectModal = ({ task, isOpen, onClose }: Props) => {
                         <span className="font-mono text-xs uppercase text-foreground">View Documentation</span>
                       </div>
                       <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                  )}
+                  {task.webUrl && (
+                    <a
+                      href={task.webUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between p-3 border border-accent/40 bg-accent/5 hover:bg-accent/20 transition-all group"
+                    >
+                      <div className="flex items-center gap-3">
+                        <ExternalLink className="w-5 h-5 text-accent" />
+                        <span className="font-mono text-xs uppercase text-foreground">Launch Dashboard</span>
+                      </div>
+                      <span className="text-accent group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                   )}
                   {task.repoUrl && (
