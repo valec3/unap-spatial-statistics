@@ -1,0 +1,84 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Preamble ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Resumen de Proyecto: Tarea 03 - Automatización Ganadera},
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\large \textbf{UNIVERSIDAD NACIONAL DEL ALTIPLANO} \par}
+    \vspace{0.5cm}
+    {\large \textbf{FACULTAD DE INGENIERIA ESTADISTICA E INFORMATICA} \par}
+    \vspace{0.4cm}
+    {\large \textbf{Escuela Profesional de Ingenieria Estadistica e Informatica} \par}
+
+    \vspace{1.5cm}
+    \IfFileExists{logo_unap.png}{\includegraphics[width=0.35\textwidth]{logo_unap.png}\par}{\vspace{2.6cm}}
+    \vspace{1.0cm}
+
+    {\Large \textbf{RESUMEN DE PROYECTO} \par}
+    \vspace{0.5cm}
+    {\large \textbf{Automatización de Pipeline Ganadero (Tarea 03)} \par}
+
+    \vfill
+    {\large \textbf{Presentado por:} Victor Raul Maye Mamani \par}
+    {\large \textbf{Codigo:} 217397 \par}
+    \vfill
+    {\large \textbf{Docente:} TORRES CRUZ FRED \par}
+    \vfill
+    {\large Puno, Peru \par}
+    {\large \today \par}
+\end{titlepage}
+
+\newpage
+
+\section{Descripción del Proyecto}
+Este proyecto corresponde a la \textbf{Tarea 03} del curso de Estadística Espacial. El objetivo central es la automatización completa de los procesos de extracción, limpieza y consolidación de datos provenientes de 14 reportes PDF generados por el software de gestión ganadera \textbf{DairyPlan}.
+
+La solución implementada transforma reportes desestructurados en un dataset unificado de alta calidad, permitiendo una toma de decisiones basada en datos para la gestión productiva y reproductiva de planteles lecheros.
+
+\section{Metodología y Tecnologías}
+Se utilizó el lenguaje de programación \textbf{R (v4.4.1)} como núcleo del procesamiento. El pipeline se divide en tres etapas fundamentales:
+
+\begin{enumerate}
+    \item \textbf{Extracción (OCR/Regex):} Uso de \texttt{pdftools} y expresiones regulares para capturar tablas desde los archivos PDF originales en la carpeta \texttt{/Input/}.
+    \item \textbf{Consolidación:} Un script maestro (\texttt{consolidar\_maestro\_v2.R}) une las 14 fuentes individuales mediante operaciones de \texttt{full\_join}, resolviendo inconsistencias y normalizando el \textit{Status Reproductivo}.
+    \item \textbf{Visualización:} Desarrollo de un Dashboard interactivo en \textbf{Shiny} utilizando \texttt{bslib} para la interfaz y \texttt{plotly} para gráficos dinámicos.
+\end{enumerate}
+
+\section{Indicadores Clave de Rendimiento (KPIs)}
+El sistema monitorea métricas críticas para la eficiencia ganadera:
+\begin{itemize}
+    \item \textbf{DEL (Días en Lactancia):} Promedio de días desde el último parto, indicador de eficiencia de ordeño.
+    \item \textbf{Lactancia Promedio:} Número medio de partos por vaca en el plantel.
+    \item \textbf{Status Repro:} Clasificación inteligente entre vacas preñadas, inseminadas y vacías.
+\end{itemize}
+
+\section{Enlaces de Verificación}
+La aplicación interactiva y el código fuente se encuentran disponibles en los siguientes enlaces:
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item \textbf{Dashboard (Web):} \href{https://s0vy85-victor0maye.shinyapps.io/tarea-03/}{https://s0vy85-victor0maye.shinyapps.io/tarea-03/}
+    \item \textbf{Repositorio GitHub:} \href{https://github.com/valec3/unap-spatial-statistics/tree/main/unidades/unidad-01/tareas/tarea-03}{https://github.com/valec3/unap-spatial-statistics/tree/main/unidades/unidad-01/tareas/tarea-03}
+    \item \textbf{Portafolio del Curso:} \href{https://victor-maye-est334.vercel.app/}{https://victor-maye-est334.vercel.app/}
+\end{itemize}
+
+\end{document}

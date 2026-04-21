@@ -1,4 +1,4 @@
-# 🐄 Proyecto ENA 2014-2024: Automatización de Pipeline Ganadero (Tarea 03)
+# 🐄 Automatización de Pipeline Ganadero (Tarea 03)
 
 ![Portada del Proyecto](file:///C:/Users/ADMIN/.gemini/antigravity/brain/2a38a8be-2e09-4580-88de-1f12aacedecf/portada_proyecto_ena_unap_1776749664730.png)
 
