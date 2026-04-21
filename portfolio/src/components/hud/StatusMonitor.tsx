@@ -17,7 +17,7 @@ const StatusMonitor = ({ unitId, title, goals, progressPercent = 0, period }: Pr
         <div className="flex flex-col items-end">
           <span className="label-tag text-secondary">LEARNING_GOALS · ACTIVE</span>
           {period && (
-            <span className="text-[9px] font-mono text-muted-foreground uppercase mt-1">
+            <span className="text-[10px] font-mono text-muted-foreground/80 uppercase mt-1">
               {period}
             </span>
           )}
@@ -28,13 +28,13 @@ const StatusMonitor = ({ unitId, title, goals, progressPercent = 0, period }: Pr
         {title}
       </h3>
 
-      <ul className="space-y-2.5">
+      <ul className="space-y-3.5">
         {goals.map((g, i) => (
           <li key={i} className="flex gap-3 items-start group">
             <span className="terminal-text shrink-0 mt-0.5">
               [{String(i + 1).padStart(2, "0")}]
             </span>
-            <span className="text-secondary/90 font-mono text-sm leading-relaxed group-hover:text-secondary transition-colors">
+            <span className="text-secondary/95 font-mono text-[15px] leading-relaxed group-hover:text-secondary transition-colors">
               ▸ {g}
             </span>
           </li>

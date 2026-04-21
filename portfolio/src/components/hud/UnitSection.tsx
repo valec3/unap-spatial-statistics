@@ -1,19 +1,7 @@
 import StatusMonitor from "./StatusMonitor";
 import TaskTile from "./TaskTile";
 
-type Task = {
-  taskId: string;
-  date: string;
-  title: string;
-  description: string;
-  fileSize: string;
-  computeTime: string;
-  variant?: "heatmap" | "cluster" | "mesh" | "vector";
-  master?: boolean;
-  badge?: string;
-  pdfUrl?: string;
-  repoUrl?: string;
-};
+import { Task } from "@/data/units";
 
 type Props = {
   unitNumber: "01" | "02";
@@ -22,8 +10,9 @@ type Props = {
   goals: string[];
   tasks: Task[];
   article: Task;
-  period?: string; // New
-  progressPercent?: number; // New
+  period?: string;
+  progressPercent?: number;
+  onTaskClick?: (task: Task) => void;
 };
 
 const UnitSection = ({
@@ -35,6 +24,7 @@ const UnitSection = ({
   article,
   period,
   progressPercent,
+  onTaskClick,
 }: Props) => {
   return (
     <section className="relative py-20 md:py-28">
@@ -84,13 +74,23 @@ const UnitSection = ({
 
         {/* Master Article */}
         <div className="mb-8">
-          <TaskTile {...article} master badge={article.badge ?? "MASTER NODE"} />
+          <TaskTile 
+            {...article} 
+            master 
+            badge={article.badge ?? "MASTER NODE"} 
+            onClick={() => onTaskClick?.(article)}
+          />
         </div>
 
         {/* Task Matrix */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {tasks.map((t, i) => (
-            <TaskTile key={t.taskId} {...t} index={i} />
+            <TaskTile 
+              key={t.taskId} 
+              {...t} 
+              index={i} 
+              onClick={() => onTaskClick?.(t)}
+            />
           ))}
         </div>
       </div>

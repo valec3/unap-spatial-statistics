@@ -1,6 +1,10 @@
-type Props = { seed?: number; variant?: "heatmap" | "cluster" | "mesh" | "vector" };
+type Props = { 
+  seed?: number; 
+  variant?: "heatmap" | "cluster" | "mesh" | "vector";
+  className?: string;
+};
 
-const HeatmapThumb = ({ seed = 1, variant = "heatmap" }: Props) => {
+const HeatmapThumb = ({ seed = 1, variant = "heatmap", className = "" }: Props) => {
   // deterministic pseudo-random
   const rand = (i: number) => {
     const x = Math.sin(seed * 9301 + i * 49297) * 233280;
@@ -9,7 +13,7 @@ const HeatmapThumb = ({ seed = 1, variant = "heatmap" }: Props) => {
 
   if (variant === "cluster") {
     return (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
+      <svg viewBox="0 0 100 60" className={`w-full h-full ${className}`}>
         <rect width="100" height="60" fill="hsl(var(--hud-panel))" />
         {Array.from({ length: 40 }).map((_, i) => (
           <circle
@@ -29,7 +33,7 @@ const HeatmapThumb = ({ seed = 1, variant = "heatmap" }: Props) => {
 
   if (variant === "mesh") {
     return (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
+      <svg viewBox="0 0 100 60" className={`w-full h-full ${className}`}>
         <rect width="100" height="60" fill="hsl(var(--hud-panel))" />
         <g fill="none" stroke="hsl(var(--primary)/0.5)" strokeWidth="0.3">
           {Array.from({ length: 12 }).map((_, i) => (
@@ -47,7 +51,7 @@ const HeatmapThumb = ({ seed = 1, variant = "heatmap" }: Props) => {
 
   if (variant === "vector") {
     return (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
+      <svg viewBox="0 0 100 60" className={`w-full h-full ${className}`}>
         <rect width="100" height="60" fill="hsl(var(--hud-panel))" />
         <g stroke="hsl(var(--secondary)/0.7)" strokeWidth="0.4" fill="none">
           {Array.from({ length: 60 }).map((_, i) => {
@@ -71,7 +75,7 @@ const HeatmapThumb = ({ seed = 1, variant = "heatmap" }: Props) => {
 
   // heatmap default
   return (
-    <svg viewBox="0 0 100 60" className="w-full h-full">
+    <svg viewBox="0 0 100 60" className={`w-full h-full ${className}`}>
       <rect width="100" height="60" fill="hsl(var(--hud-panel))" />
       {Array.from({ length: 10 }).map((_, y) =>
         Array.from({ length: 16 }).map((_, x) => {

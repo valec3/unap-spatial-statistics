@@ -1,9 +1,11 @@
-const TopoBackground = () => {
+import { memo } from "react";
+
+const TopoBackground = memo(() => {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {/* Vector topographic mesh */}
       <svg
-        className="absolute inset-0 h-full w-full opacity-[0.18]"
+        className="absolute inset-0 h-full w-full opacity-[0.12]"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice"
         viewBox="0 0 1600 1000"
@@ -47,12 +49,12 @@ const TopoBackground = () => {
       </svg>
 
       {/* Scanline overlay */}
-      <div className="absolute inset-0 opacity-[0.04] [background:repeating-linear-gradient(0deg,hsl(var(--primary))_0_1px,transparent_1px_3px)]" />
+      <div className="absolute inset-0 opacity-[0.02] [background:repeating-linear-gradient(0deg,hsl(var(--primary))_0_1px,transparent_1px_3px)]" />
 
       {/* Vignette */}
       <div className="absolute inset-0 [background:radial-gradient(ellipse_at_center,transparent_40%,hsl(var(--background))_100%)]" />
     </div>
   );
-};
+});
 
 export default TopoBackground;

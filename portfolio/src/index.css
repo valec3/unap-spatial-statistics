@@ -28,7 +28,7 @@
     --secondary-foreground: 240 30% 2%;
 
     --muted: 240 20% 8%;
-    --muted-foreground: 200 15% 55%;
+    --muted-foreground: 200 10% 70%;
 
     --accent: 184 100% 50%;
     --accent-foreground: 240 30% 2%;
@@ -89,7 +89,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
     background-image:
       /* micro dots at 50px intersections */
@@ -174,7 +174,7 @@
 
   .label-tag {
     font-family: 'JetBrains Mono', monospace;
-    @apply text-[10px] uppercase tracking-[0.2em] text-primary/70;
+    @apply text-[11px] font-medium uppercase tracking-[0.2em] text-primary/80;
   }
 }
 

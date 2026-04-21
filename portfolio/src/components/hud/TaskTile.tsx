@@ -13,7 +13,9 @@ type Props = {
   badge?: string;
   pdfUrl?: string; // Updated
   repoUrl?: string; // Updated
+  imageUrl?: string;
   index?: number;
+  onClick?: () => void;
 };
 
 const TaskTile = ({
@@ -28,11 +30,14 @@ const TaskTile = ({
   badge,
   pdfUrl,
   repoUrl,
+  imageUrl,
   index = 0,
+  onClick,
 }: Props) => {
   return (
     <div
-      className={`group relative block scan-line transition-all duration-300 ${
+      onClick={onClick}
+      className={`group relative block scan-line transition-all duration-300 cursor-pointer ${
         master
           ? "hud-panel hud-master p-6 md:p-7"
           : "hud-panel hud-corner p-5 hover:-translate-y-1"
@@ -40,10 +45,10 @@ const TaskTile = ({
       style={{ animationDelay: `${index * 60}ms` }}
     >
       {/* Hover metadata corners */}
-      <span className="pointer-events-none absolute top-1.5 right-2 text-[9px] font-mono text-primary/0 group-hover:text-primary/80 transition-opacity">
+      <span className="pointer-events-none absolute top-1.5 right-2 text-[10px] font-mono text-primary/0 group-hover:text-primary/90 transition-opacity">
         {fileSize}
       </span>
-      <span className="pointer-events-none absolute bottom-1.5 left-2 text-[9px] font-mono text-primary/0 group-hover:text-primary/80 transition-opacity">
+      <span className="pointer-events-none absolute bottom-1.5 left-2 text-[10px] font-mono text-primary/0 group-hover:text-primary/90 transition-opacity">
         Δt {computeTime}
       </span>
 
@@ -56,10 +61,19 @@ const TaskTile = ({
       {/* Visual Preview */}
       <div
         className={`relative border border-primary/20 mb-4 overflow-hidden ${
-          master ? "h-40" : "h-24"
+          master ? "h-60" : "h-48"
         }`}
       >
-        <HeatmapThumb seed={index + 1} variant={variant} />
+        {imageUrl ? (
+          <img 
+            src={imageUrl} 
+            alt={title} 
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+          />
+        ) : (
+          <HeatmapThumb seed={index + 1} variant={variant} />
+        )}
+        <HeatmapThumb seed={index + 1} variant={variant} className={imageUrl ? "sr-only" : ""} />
         {/* corner ticks */}
         <span className="absolute top-1 left-1 h-1.5 w-1.5 border-t border-l border-primary" />
         <span className="absolute top-1 right-1 h-1.5 w-1.5 border-t border-r border-primary" />
@@ -82,7 +96,7 @@ const TaskTile = ({
         {title}
       </h4>
 
-      <p className="text-xs md:text-[13px] text-muted-foreground font-mono leading-relaxed mb-4">
+      <p className="text-sm md:text-[14px] text-muted-foreground/90 font-mono leading-relaxed mb-4">
         {description}
       </p>
 

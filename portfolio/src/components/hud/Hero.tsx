@@ -1,4 +1,5 @@
 import { FaculdadLogo, UnaSeal } from "./Logos";
+import GisCompass from "./GisCompass";
 
 const Hero = () => {
   return (
@@ -17,14 +18,8 @@ const Hero = () => {
         </div>
 
         {/* Center status */}
-        <div className="hidden md:flex flex-col items-center gap-1">
-          <div className="flex items-center gap-2 label-tag">
-            <span className="h-1.5 w-1.5 rounded-full bg-secondary animate-flicker" />
-            <span className="text-secondary">SYSTEM ONLINE</span>
-          </div>
-          <div className="text-[10px] font-mono text-muted-foreground">
-            CHANNEL // 2026-I
-          </div>
+        <div className="hidden lg:flex flex-col items-center gap-1">
+          <GisCompass />
         </div>
 
         <div className="flex items-center gap-4">
@@ -57,7 +52,7 @@ const Hero = () => {
         <div className="text-center animate-boot delay-300">
           <div className="label-tag mb-8">[ COURSE_MODULE // 2026-I ]</div>
 
-          <h1 className="font-display font-bold text-foreground text-[12vw] md:text-[8.5vw] leading-[0.95] tracking-[0.04em] text-glow">
+          <h1 className="font-display font-bold text-foreground text-[10vw] md:text-[7.5vw] leading-[0.95] tracking-[0.04em] text-glow">
             ESTADÍSTICA
             <br />
             <span className="text-primary">ESPACIAL</span>
@@ -99,17 +94,17 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="mt-4 pt-3 border-t border-primary/20 grid grid-cols-3 gap-2 text-[10px] font-mono">
+          <div className="mt-4 pt-3 border-t border-primary/20 grid grid-cols-3 gap-2 text-[11px] font-mono font-medium">
             <div>
-              <span className="text-muted-foreground">CYCLE</span>
+              <span className="text-muted-foreground/80 uppercase text-[9px] block mb-0.5">CYCLE</span>
               <div className="text-primary">2026-I</div>
             </div>
             <div className="text-center">
-              <span className="text-muted-foreground">UNITS</span>
+              <span className="text-muted-foreground/80 uppercase text-[9px] block mb-0.5">UNITS</span>
               <div className="text-primary">02 / 02</div>
             </div>
             <div className="text-right">
-              <span className="text-muted-foreground">UPTIME</span>
+              <span className="text-muted-foreground/80 uppercase text-[9px] block mb-0.5">UPTIME</span>
               <div className="text-primary animate-ticker">99.97%</div>
             </div>
           </div>

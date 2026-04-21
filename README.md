@@ -1,77 +1,88 @@
-# Portafolio del Curso de Estadistica Espacial
+# 🚀 Unap Spatial Statistics Portfolio (2014-2024)
 
-Este repositorio contiene las evidencias del curso de Estadistica Espacial (2026-I).
-El objetivo es que el docente pueda revisar rapidamente que entregables existen hoy y donde se ubican.
+[![Academic Portfolio](https://img.shields.io/badge/Portfolio-React-blue?style=for-the-badge&logo=react)](file:///d:/descargas/ENA_2014_2024/portfolio)
+[![Spatial Analysis](https://img.shields.io/badge/Analysis-R%20Project-green?style=for-the-badge&logo=r)](https://github.com/valec3/unap-spatial-statistics)
+[![SDD Workflow](https://img.shields.io/badge/Approach-SDD-purple?style=for-the-badge)](https://github.com/valec3/unap-spatial-statistics)
 
-## Datos del curso
+Este repositorio es el epicentro técnico del curso de **Estadística Espacial** (Ciclo 2026-I). No es solo una colección de tareas; es un ecosistema integrado que combina análisis estadístico avanzado, pipelines de datos profesionales y una interfaz de usuario inmersiva.
 
-- **Universidad:** Universidad Nacional del Altiplano
-- **Facultad:** Ingenieria Estadistica e Informatica
-- **Curso:** Estadistica Espacial
+## 🏛️ Información del Estudiante
+- **Estudiante:** Victor Raul Maye Mamani (Código: 217397)
+- **Institución:** Universidad Nacional del Altiplano
+- **Facultad:** Ingeniería Estadística e Informática
 - **Docente:** Ing. Fred Torres Cruz
-- **Estudiante:** Victor Raul Maye Mamani
-- **Codigo:** 217397
-- **Ciclo:** 2026-I
 
-## Contenido actual del repositorio (verificado)
+---
 
-### 1) Unidad 01
+## 🏗️ Arquitectura del Proyecto
 
-- `unidades/unidad-01/tareas/tarea-01/main.tex` - Monografia de la Tarea 01.
-- `unidades/unidad-01/tareas/tarea-01/references.bib` - Referencias bibliograficas de la Tarea 01.
-- `unidades/unidad-01/tareas/tarea-02-ena/` - Desarrollo completo de la Tarea 02 (analisis ENA en R), incluye:
-  - scripts `00_setup.R`, `01_ingestion.R`, `02_processing.R`, `03_reporting.R`, `master.R`
-  - insumos espaciales (`.shp`, `.dbf`, `.shx`, etc.)
-  - resultados en `results/` (mapas e indicadores)
-  - documento de insights `04_insights.md`
+El proyecto se divide en tres capas fundamentales que garantizan un flujo de trabajo profesional y escalable:
 
-### 2) Unidad 02
+### 1. 🌐 Portfolio Web (HUD Interface)
+Ubicado en [`/portfolio`](./portfolio). Una aplicación web de vanguardia construida con **React + Vite + TypeScript**.
+- **Design System:** Estética "Tactical HUD" premium para una experiencia académica inmersiva.
+- **Data Architecture:** Centralización de contenido en esquemas de datos desacoplados de la UI.
+- **Workflow:** Uso estricto de **Spec-Driven Development (SDD)** para la gestión de cambios y nuevas funcionalidades.
 
-- `unidades/unidad-02/tareas/` - Carpeta creada para futuras entregas (sin tareas registradas aun).
+### 2. 📊 Pipeline de Análisis (R & CRISP-DM)
+Ubicado en [`unidades/unidad-01/tareas/tarea-02-ena/`](./unidades/unidad-01/tareas/tarea-02-ena/).
+- **Core:** Análisis multianual de la Encuesta Nacional Agropecuaria (ENA 2014-2024).
+- **Metodología:** Pipelines modulares siguiendo **CRISP-DM** (Ingestión -> Procesamiento -> Reporte).
+- **Optimización:** Implementación de flujos **SAV a Parquet** para manejo eficiente de Big Data.
+- **Geoprocesamiento:** Integración de Shapefiles y visualización cartográfica de alta fidelidad.
 
-### 3) Papers
+### 3. 📈 Dashboards Interactivos (Shiny)
+Ubicado en [`unidades/unidad-01/tareas/tarea-03/`](./unidades/unidad-01/tareas/tarea-03/).
+- **Live Version:** [Explorar Dashboard en vivo](https://s0vy85-victor0maye.shinyapps.io/tarea-03/)
+- **Stack:** `tidyverse`, `shiny`, `bslib`, `plotly`.
+- **Purpose:** Automatización de reportes DairyPlan y visualización de métricas críticas de producción.
 
-- `papers/01-review/main.tex` - Borrador de paper en LaTeX.
-- `papers/01-review/bib` - Archivo bibliografico actual del borrador.
-- `papers/02/` - Carpeta preparada para contenido de paper de la segunda unidad.
+---
 
-### 4) Portafolio web
-
-- `portfolio/` - Sitio del curso (React + Vite + TypeScript), con secciones de unidades y tareas.
-
-### 5) Datos
-
-- `data/` - Datos fuente del trabajo ENA.
-
-## Estructura resumida
+## 📂 Estructura General
 
 ```text
 ENA_2014_2024/
-|- README.md
-|- .gitignore
-|- data/
-|- papers/
-|  |- 01-review/
-|  |- 02/
-|- portfolio/
-|- unidades/
-   |- unidad-01/
-   |  |- tareas/
-   |     |- tarea-01/
-   |     |- tarea-02-ena/
-   |- unidad-02/
-      |- tareas/
+├── data/                 # Datasets fuente y procesados (Big Data optimized)
+├── papers/               # Documentación científica y borradores LaTeX
+│   ├── 01-review/        # Review Paper: Estado del arte en Estadística Espacial
+│   └── 02/               # Planificado para la siguiente unidad
+├── portfolio/            # Web Portfolio App (React Engine)
+├── unidades/             # Entregables académicos estructurados
+│   ├── unidad-01/        # 🏁 100% Completado
+│   │   └── tareas/
+│   │       ├── tarea-01/    # Fundamentos y revisión
+│   │       ├── tarea-02-ena/# Pipeline de análisis espacial ENA
+│   │       └── tarea-03/    # Dashboard interactivo Shiny
+│   └── unidad-02/        # 🚧 En progreso
+└── .atl/                 # Spec-Driven Development Artifacts & Skill Registry
 ```
 
-## Como ejecutar
+---
 
-### Tarea 02 (ENA) en R
+## 🛠️ Guía de Ejecución
 
-```r
-setwd("unidades/unidad-01/tareas/tarea-02-ena") # RUTA DONDE ESTA EL PROYECTO
-source("master.R")
+### Para Análisis Estadístico (R):
+1. Abrir el proyecto en RStudio.
+2. Ejecutar `source("unidades/unidad-01/tareas/tarea-02-ena/master.R")`.
+*Nota: Asegúrese de tener instaladas las dependencias listadas en el setup.*
+
+### Para el Portfolio Web:
+```bash
+cd portfolio
+bun install
+bun run dev
 ```
 
-## Nota
+---
 
-El contenido de este README describe solo lo que existe actualmente en el repositorio.
+## 📜 Filosofía de Desarrollo: SDD
+Este proyecto no se construye al azar. Seguimos **Spec-Driven Development (SDD)**:
+1. **Explore:** Investigación profunda antes de codificar.
+2. **Propose:** Definición clara del cambio.
+3. **Spec & Design:** Planificación arquitectónica rigurosa.
+4. **Apply:** Implementación consciente.
+5. **Verify:** Validación contra especificaciones.
+
+---
+*Mantenido con rigor académico y pasión por la ingeniería de datos.*
