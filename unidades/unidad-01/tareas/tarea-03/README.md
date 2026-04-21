@@ -1,6 +1,6 @@
 # 🐄 Automatización de Pipeline Ganadero (Tarea 03)
 
-![Portada del Proyecto](file:///C:/Users/ADMIN/.gemini/antigravity/brain/2a38a8be-2e09-4580-88de-1f12aacedecf/portada_proyecto_ena_unap_1776749664730.png)
+![Portada del Proyecto](./../../../../portfolio/public/previews/task-03.png)
 
 ## 📝 Descripción
 Este proyecto corresponde a la **Tarea 03** del curso de Estadística Espacial (UNAP). Consiste en la automatización completa de la extracción, limpieza y consolidación de 14 reportes PDF generados por el software **DairyPlan**, transformándolos en un dataset unificado y un **Dashboard Interactivo en Shiny** para la gestión ganadera estratégica.
