@@ -1,0 +1,139 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\geometry{margin=1in, top=3.5cm, headheight=2cm, headsep=0.5cm}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=1.2cm]{unap_logo.png}}
+\fancyhead[R]{\includegraphics[height=1.2cm]{finesi_logo.png}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+% --- PORTADA ---
+\begin{titlepage}
+    \centering
+    \vspace*{\fill}
+    {\bfseries\LARGE UNIVERSIDAD NACIONAL DEL ALTIPLANO \par}
+    \vspace{0.8cm}
+    {\bfseries\Large FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA \par}
+    \vspace{0.6cm}
+    {\bfseries\large Escuela Profesional de Ingeniería Estadística e Informática \par}
+    
+    \vspace{2cm}
+    \includegraphics[width=0.40\textwidth]{unap_logo.png}
+    \vspace{2cm}
+    
+    {\bfseries\huge Informe de Resolución: Tarea 04 \par}
+    \vspace{0.5cm}
+    {\Large Variable Aleatoria Gaussiana \par}
+    
+    \vfill
+    
+    \begin{center}
+    {\large \textbf{Curso:} Estadística Espacial \par}
+    \vspace{0.3cm}
+    {\large \textbf{Estudiante:} Victor Raul Maye Mamani (217397) \par}
+    \vspace{0.3cm}
+    {\large \textbf{Docente:} Ing. Fred Torres Cruz \par}
+    \end{center}
+    
+    \vfill
+    
+    {\large Puno, Perú \par}
+    {\large 2026 \par}
+    \vspace*{\fill}
+\end{titlepage}
+
+\newpage
+
+\section{Introducción}
+El presente informe detalla la resolución de los ejercicios prácticos propuestos en la Cápsula 1 sobre la Variable Aleatoria Gaussiana. Se aplican conceptos fundamentales de la distribución normal $N(\mu, \sigma^2)$, estandarización de variables y la regla empírica.
+
+\section{Resolución de Ejercicios}
+
+\subsection{Ejercicio 1: Sensores IoT}
+\textbf{Contexto:} Temperatura capturada por sensores con $X \sim N(70, 5^2)$.
+
+\begin{enumerate}
+    \item \textbf{Intervalo de normalidad:} Basado en la regla $3\sigma$, el intervalo es $[\mu - 3\sigma, \mu + 3\sigma]$.
+    \[ [70 - 3(5), 70 + 3(5)] = [55, 85] \]
+    \item \textbf{Probabilidad de temperatura mayor a 82°C:}
+    \[ Z = \frac{82 - 70}{5} = \frac{12}{5} = 2.4 \]
+    \[ P(X > 82) = P(Z > 2.4) \approx 0.0082 \]
+    \item \textbf{¿Es 82 una anomalía?} 
+    No, ya que 82 está dentro del intervalo $[55, 85]$. Sin embargo, tiene una probabilidad muy baja de ocurrir.
+\end{enumerate}
+
+\subsection{Ejercicio 2: Crédito Bancario}
+\textbf{Contexto:} Puntaje crediticio $X \sim N(650, 80^2)$.
+
+\begin{enumerate}
+    \item \textbf{Estandarización para 550 puntos:}
+    \[ Z = \frac{550 - 650}{80} = \frac{-100}{80} = -1.25 \]
+    \item \textbf{Proporción de clientes de alto riesgo ($X < 550$):}
+    \[ P(X < 550) = P(Z < -1.25) \approx 0.1056 \quad (10.56\%) \]
+    \item \textbf{Ajuste de umbral para riesgo del 5\%:}
+    Buscamos $T$ tal que $P(X < T) = 0.05$. El valor crítico de $Z$ para el 5\% inferior es approximately $-1.645$.
+    \[ T = \mu + Z \cdot \sigma = 650 + (-1.645) \cdot 80 = 518.4 \]
+    El nuevo umbral debe ser aproximadamente $518.4$ puntos.
+\end{enumerate}
+
+\subsection{Ejercicio 3: Errores de Regresión}
+\textbf{Contexto:} Errores $\epsilon \sim N(0, 200^2)$.
+
+\begin{enumerate}
+    \item \textbf{Probabilidad de error inaceptable ($|\epsilon| > 400$):}
+    \[ Z = \frac{400 - 0}{200} = 2 \]
+    \[ P(|\epsilon| > 400) = 2 \cdot P(Z < -2) \approx 2 \cdot 0.02275 = 0.0455 \]
+    \item \textbf{Esperanza de errores inaceptables en 30 días:}
+    \[ E[Y] = n \cdot p = 30 \cdot 0.0455 = 1.365 \text{ días} \]
+    \item \textbf{Impacto de reducir $\sigma$ a 120:}
+    \[ Z = \frac{400}{120} \approx 3.33 \]
+    \[ P(|\epsilon| > 400)_{\sigma=120} = 2 \cdot P(Z < -3.33) \approx 0.00086 \]
+    El riesgo se reduce drásticamente de $4.55\%$ a menos del $0.1\%$.
+\end{enumerate}
+
+\subsection{Ejercicio 4: Streaming (Edades)}
+\textbf{Contexto:} Edad de usuarios $X \sim N(34, 9^2)$.
+
+\begin{enumerate}
+    \item \textbf{Probabilidad en el rango [25, 43]:}
+    \[ Z_{25} = \frac{25-34}{9} = -1; \quad Z_{43} = \frac{43-34}{9} = 1 \]
+    Esto corresponde a $P(-1 < Z < 1)$, que según la regla empírica es $\approx 0.6827$.
+    \item \textbf{¿Es 55 años un outlier?}
+    \[ Z = \frac{55 - 34}{9} = \frac{21}{9} \approx 2.33 \]
+    Dado que $Z > 2$, se considera un outlier ligero; si usamos el criterio estricto de $3\sigma$, no lo sería.
+    \item \textbf{Percentil 90 (10\% más mayor):}
+    Buscamos $Z$ tal que $P(Z < z) = 0.90$, lo cual es $Z \approx 1.282$.
+    \[ \text{Edad} = 34 + 1.282 \cdot 9 = 45.54 \text{ años} \]
+\end{enumerate}
+
+\subsection{Ejercicio 5: Sistemas Distribuidos}
+\textbf{Contexto:} Tiempo de respuesta $X \sim N(120, 25^2)$.
+
+\begin{enumerate}
+    \item \textbf{SLA para el 99\% de solicitudes:}
+    Buscamos $T$ tal que $P(X < T) = 0.99$. Valor crítico $Z \approx 2.326$.
+    \[ T = 120 + 2.326 \cdot 25 = 178.15 \text{ ms} \]
+    \item \textbf{Impacto de duplicar la varianza ($Var = 1250$):}
+    $\sigma_{new} = \sqrt{1250} \approx 35.35$.
+    \[ T_{new} = 120 + 2.326 \cdot 35.35 = 202.24 \text{ ms} \]
+    El tiempo de respuesta máximo aumentaría de $178$ ms a $202$ ms.
+\end{enumerate}
+
+\section{Conclusión}
+La distribución gaussiana permite modelar comportamientos complejos y establecer métricas de confianza esenciales en ingeniería de datos y sistemas. La reducción de la desviación estándar (variabilidad) es la estrategia más efectiva para mejorar la confiabilidad de los procesos.
+
+\end{document}
