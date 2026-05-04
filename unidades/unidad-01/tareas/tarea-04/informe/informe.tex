@@ -9,6 +9,9 @@
 \usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
+\usepackage{xcolor}
+
+\definecolor{interpretationcolor}{RGB}{0, 102, 102} % Un tono Teal oscuro profesional
 
 \geometry{margin=1in, top=3.5cm, headheight=2cm, headsep=0.5cm}
 
@@ -58,79 +61,92 @@
 
 \newpage
 
-\section{Introducción}
-El presente informe detalla la resolución de los ejercicios prácticos propuestos en la Cápsula 1 sobre la Variable Aleatoria Gaussiana. Se aplican conceptos fundamentales de la distribución normal $N(\mu, \sigma^2)$, estandarización de variables y la regla empírica.
-
 \section{Resolución de Ejercicios}
 
 \subsection{Ejercicio 1: Sensores IoT}
 \textbf{Contexto:} Temperatura capturada por sensores con $X \sim N(70, 5^2)$.
 
 \begin{enumerate}
-    \item \textbf{Intervalo de normalidad:} Basado en la regla $3\sigma$, el intervalo es $[\mu - 3\sigma, \mu + 3\sigma]$.
+    \item \textbf{(a) Intervalo de normalidad:} Basado en la regla $3\sigma$, el intervalo es $[\mu - 3\sigma, \mu + 3\sigma]$.
     \[ [70 - 3(5), 70 + 3(5)] = [55, 85] \]
-    \item \textbf{Probabilidad de temperatura mayor a 82°C:}
-    \[ Z = \frac{82 - 70}{5} = \frac{12}{5} = 2.4 \]
-    \[ P(X > 82) = P(Z > 2.4) \approx 0.0082 \]
-    \item \textbf{¿Es 82 una anomalía?} 
-    No, ya que 82 está dentro del intervalo $[55, 85]$. Sin embargo, tiene una probabilidad muy baja de ocurrir.
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Este rango define los límites operativos de seguridad. Cualquier lectura fuera de este umbral debe activar una inspección técnica inmediata.}
+
+    \item \textbf{(b) Probabilidad de temperatura mayor a 82°C:}
+    \[ Z = \frac{82 - 70}{5} = 2.4 \implies P(X > 82) \approx 0.0082 \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Con una probabilidad menor al 1\%, este evento es estadísticamente raro. Aunque está dentro del límite de $3\sigma$, es un indicador temprano de sobrecalentamiento.}
+
+    \item \textbf{(c) Porcentaje esperado de anomalías:} 
+    Según la regla $3\sigma$, el área fuera del intervalo normal es $1 - 0.997 = 0.003$.
+    \[ \% \text{Anomalías} = 0.3\% \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} En un proceso estable, se prevé que solo 3 de cada 1000 lecturas sean anomalías. Una frecuencia mayor delataría inestabilidad estructural.}
 \end{enumerate}
 
 \subsection{Ejercicio 2: Crédito Bancario}
 \textbf{Contexto:} Puntaje crediticio $X \sim N(650, 80^2)$.
 
 \begin{enumerate}
-    \item \textbf{Estandarización para 550 puntos:}
-    \[ Z = \frac{550 - 650}{80} = \frac{-100}{80} = -1.25 \]
-    \item \textbf{Proporción de clientes de alto riesgo ($X < 550$):}
+    \item \textbf{(a) Estandarización del umbral:}
+    \[ Z = \frac{550 - 650}{80} = -1.25 \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} El cliente se sitúa un 25\% más allá de una desviación estándar por debajo de la media, marcando un perfil de crédito sensible.}
+
+    \item \textbf{(b) Proporción de la cartera en alto riesgo:}
     \[ P(X < 550) = P(Z < -1.25) \approx 0.1056 \quad (10.56\%) \]
-    \item \textbf{Ajuste de umbral para riesgo del 5\%:}
-    Buscamos $T$ tal que $P(X < T) = 0.05$. El valor crítico de $Z$ para el 5\% inferior es approximately $-1.645$.
-    \[ T = \mu + Z \cdot \sigma = 650 + (-1.645) \cdot 80 = 518.4 \]
-    El nuevo umbral debe ser aproximadamente $518.4$ puntos.
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Aproximadamente 1 de cada 10 clientes potenciales es clasificado como de riesgo. Esta métrica es fundamental para el cálculo de reservas bancarias.}
+
+    \item \textbf{(c) Ajuste de umbral para riesgo del 5\%:}
+    Valor crítico $Z \approx -1.645 \implies T = 650 + (-1.645 \cdot 80) = 518.4$.
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Para restringir el riesgo al 5\%, el banco debe bajar su tolerancia. El nuevo umbral de 518 puntos asegura una cartera mucho más robusta.}
 \end{enumerate}
 
 \subsection{Ejercicio 3: Errores de Regresión}
 \textbf{Contexto:} Errores $\epsilon \sim N(0, 200^2)$.
 
 \begin{enumerate}
-    \item \textbf{Probabilidad de error inaceptable ($|\epsilon| > 400$):}
-    \[ Z = \frac{400 - 0}{200} = 2 \]
-    \[ P(|\epsilon| > 400) = 2 \cdot P(Z < -2) \approx 2 \cdot 0.02275 = 0.0455 \]
-    \item \textbf{Esperanza de errores inaceptables en 30 días:}
-    \[ E[Y] = n \cdot p = 30 \cdot 0.0455 = 1.365 \text{ días} \]
-    \item \textbf{Impacto de reducir $\sigma$ a 120:}
-    \[ Z = \frac{400}{120} \approx 3.33 \]
-    \[ P(|\epsilon| > 400)_{\sigma=120} = 2 \cdot P(Z < -3.33) \approx 0.00086 \]
-    El riesgo se reduce drásticamente de $4.55\%$ a menos del $0.1\%$.
+    \item \textbf{(a) Probabilidad de error inaceptable:}
+    \[ Z = \frac{400}{200} = 2 \implies P(|\epsilon| > 400) = 2 \cdot P(Z < -2) \approx 0.0455 \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Un riesgo del 4.5\% de errores graves indica que el modelo requiere una supervisión constante por parte de los analistas de negocio.}
+
+    \item \textbf{(b) Esperanza de errores en un mes (30 días):}
+    \[ E[Y] = 30 \cdot 0.0455 \approx 1.37 \text{ días} \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Estadísticamente, el modelo fallará al menos una vez al mes. Es imperativo contar con un protocolo de corrección manual para estos casos.}
+
+    \item \textbf{(c) Impacto de reducir la varianza ($\sigma = 120$):}
+    \[ Z = \frac{400}{120} \approx 3.33 \implies P(|\epsilon| > 400) \approx 0.00086 \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Al mejorar la precisión (bajando la dispersión), el riesgo de fallos críticos se reduce en un 98\%, logrando un sistema de alta fidelidad.}
 \end{enumerate}
 
 \subsection{Ejercicio 4: Streaming (Edades)}
 \textbf{Contexto:} Edad de usuarios $X \sim N(34, 9^2)$.
 
 \begin{enumerate}
-    \item \textbf{Probabilidad en el rango [25, 43]:}
-    \[ Z_{25} = \frac{25-34}{9} = -1; \quad Z_{43} = \frac{43-34}{9} = 1 \]
-    Esto corresponde a $P(-1 < Z < 1)$, que según la regla empírica es $\approx 0.6827$.
-    \item \textbf{¿Es 55 años un outlier?}
-    \[ Z = \frac{55 - 34}{9} = \frac{21}{9} \approx 2.33 \]
-    Dado que $Z > 2$, se considera un outlier ligero; si usamos el criterio estricto de $3\sigma$, no lo sería.
-    \item \textbf{Percentil 90 (10\% más mayor):}
-    Buscamos $Z$ tal que $P(Z < z) = 0.90$, lo cual es $Z \approx 1.282$.
-    \[ \text{Edad} = 34 + 1.282 \cdot 9 = 45.54 \text{ años} \]
+    \item \textbf{(a) Probabilidad en el rango [25, 43]:}
+    \[ Z = \pm 1 \implies P(-1 < Z < 1) \approx 0.6827 \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Casi el 70\% de la base de usuarios pertenece a esta franja. Las estrategias de retención deben enfocarse prioritariamente en este segmento demográfico central.}
+
+    \item \textbf{(b) Análisis de usuario de 55 años:}
+    \[ Z = \frac{55 - 34}{9} \approx 2.33 \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Con un puntaje $Z > 2$, este usuario se considera un valor atípico. No es el perfil típico de la plataforma, representando un nicho minoritario pero real.}
+
+    \item \textbf{(c) Umbral para el 10\% m ́as mayor:}
+    $Z \approx 1.282 \implies \text{Edad} = 34 + 1.282 \cdot 9 \approx 45.54 \text{ años}$.
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} El segmento "Senior" de la plataforma comienza a partir de los 45.5 años. Este dato es vital para segmentar contenidos de estilo de vida o premium.}
 \end{enumerate}
 
 \subsection{Ejercicio 5: Sistemas Distribuidos}
 \textbf{Contexto:} Tiempo de respuesta $X \sim N(120, 25^2)$.
 
 \begin{enumerate}
-    \item \textbf{SLA para el 99\% de solicitudes:}
-    Buscamos $T$ tal que $P(X < T) = 0.99$. Valor crítico $Z \approx 2.326$.
-    \[ T = 120 + 2.326 \cdot 25 = 178.15 \text{ ms} \]
-    \item \textbf{Impacto de duplicar la varianza ($Var = 1250$):}
-    $\sigma_{new} = \sqrt{1250} \approx 35.35$.
-    \[ T_{new} = 120 + 2.326 \cdot 35.35 = 202.24 \text{ ms} \]
-    El tiempo de respuesta máximo aumentaría de $178$ ms a $202$ ms.
+    \item \textbf{(a) Probabilidad de superar 170 ms:}
+    \[ Z = 2 \implies P(X > 170) \approx 0.0228 \]
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} Una latencia superior a 170ms es un evento excepcional (2.28\%). En sistemas de alta disponibilidad, esto suele activar alertas de degradación de red.}
+
+    \item \textbf{(b) Valor de T para cumplir el SLA (99\%):}
+    $Z \approx 2.326 \implies T = 120 + 2.326 \cdot 25 \approx 178.15 \text{ ms}$.
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} 178 ms es el límite de compromiso de servicio. Mantener este SLA garantiza una experiencia de usuario competitiva y estable.}
+
+    \item \textbf{(c) Impacto de la inestabilidad (varianza $\times 2$):}
+    $\sigma_{new} \approx 35.35 \implies T_{new} \approx 202.24 \text{ ms}$.
+    \textcolor{interpretationcolor}{\textbf{Interpretación:} La inestabilidad técnica obliga a degradar el SLA en un 13\%. Esto demuestra que la consistencia (baja varianza) es tan importante como la velocidad promedio.}
 \end{enumerate}
 
 \section{Conclusión}
