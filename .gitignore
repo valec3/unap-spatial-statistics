@@ -56,3 +56,11 @@ papers/**/*.toc
 
 # --- Keep source and metadata ---
 !papers/**/.gitkeep
+
+data/tif-files/
+unidades/unidad-01/tareas/tarea-06/coding/*.parquet
+# unidades/unidad-01/tareas/tarea-06/coding/figures/
+
+data/output_SRTMGL1.tif
+unidades/unidad-01/tareas/tarea-06/coding/Dataset_Final_Analisis.csv
+unidades/unidad-01/tareas/tarea-06/coding/Dataset_Final_Analisis_Altitud.csv
