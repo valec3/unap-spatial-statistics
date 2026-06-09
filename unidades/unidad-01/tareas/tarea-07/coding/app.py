@@ -1,6 +1,5 @@
 import streamlit as st
 import geopandas as gpd
-import libpysal
 import matplotlib.pyplot as plt
 import pandas as pd
 from libpysal.weights import Queen
@@ -13,45 +12,49 @@ st.title("📊 Aplicativo de Autocorrelación Espacial (Índice de Moran)")
 st.write("Evidencia del Índice de Moran utilizando múltiples datasets integrados de PySAL.")
 
 try:
-    # Fetch all examples first if needed
-    try:
-        libpysal.examples.get_path('stlouis.shp')
-    except Exception:
-        libpysal.examples.fetch_all()
-        
+    # Use local datasets directory (bundled with the app)
+    import os
+    datasets_dir = os.path.join(os.path.dirname(__file__), 'datasets')
+    
     dataset_opcion = st.selectbox(
         "💡 Selecciona un Dataset para evidenciar el análisis:",
         [
-            "Homicidios en St. Louis (EE.UU.) - Alta Autocorrelación",
-            "Resultados y Criminalidad en el Sur (EE.UU.) - Clusters Espaciales",
-            "Precios de Vivienda en Baltimore - Datos Socioeconómicos"
+            "Homicidios en St. Louis (EE.UU.) - Variables Socieconómicas",
+            "AirBnB en Chicago (EE.UU.) - socioeconomía y crimen",
+            "Indicadores de Desarrollo en Nepal"
         ]
     )
 
     gdf = None
     desc = ""
+    path = None
     
     if "St. Louis" in dataset_opcion:
-        path = libpysal.examples.get_path('stlouis.shp')
-        gdf = gpd.read_file(path)
-        desc = "Dataset de homicidios y variables socioeconómicas en el área de St. Louis (1979-1993)."
-        
-    elif "Sur" in dataset_opcion:
-        path = libpysal.examples.get_path('south.shp')
-        gdf = gpd.read_file(path)
-        desc = "Datos estructurales y de criminalidad en condados del sur de EE.UU. (1960-1990)."
-        
-    else:  # Boston - usando otro dataset de ejemplo de libpysal
-        try:
-            # Intentamos con el dataset de Baltimore que sí existe
-            path = libpysal.examples.get_path('Baltimore.shp')
+        path = os.path.join(datasets_dir, 'StLouis', 'stlouis.shp')
+        if os.path.exists(path):
             gdf = gpd.read_file(path)
-            desc = "Dataset de precios de viviendas en Baltimore, Maryland."
-        except Exception:
-            # Si no funciona, usamos el dataset de us_income (solo si es geodataframe)
-            path = libpysal.examples.get_path('us48.shp')
+            desc = "Condados del área de St. Louis con tasas de homicide, población y variables socioeconómicas (1979-1993)."
+        else:
+            st.error("No se encontró el dataset de St. Louis.")
+            st.stop()
+            
+    elif "AirBnB" in dataset_opcion:
+        path = os.path.join(datasets_dir, 'AirBnB', 'airbnb_Chicago 2015.shp')
+        if os.path.exists(path):
             gdf = gpd.read_file(path)
-            desc = "Dataset de estados contiguos de EE.UU. (perímetro)."
+            desc = "Barrios de Chicago con datos de AirBnB, indicadores socioeconómicos y tasas de crimen."
+        else:
+            st.error("No se encontró el dataset de AirBnB.")
+            st.stop()
+            
+    else:  # Nepal
+        path = os.path.join(datasets_dir, 'Nepal', 'nepal.shp')
+        if os.path.exists(path):
+            gdf = gpd.read_file(path)
+            desc = "Distritos de Nepal con indicadores de pobreza, desarrollo humano e inversión pública."
+        else:
+            st.error("No se encontró el dataset de Nepal.")
+            st.stop()
 
     st.info(f"**Descripción del Dataset:** {desc}")
     
@@ -105,8 +108,9 @@ try:
             
             st.pyplot(fig)
 
-except FileNotFoundError:
-    st.error("No se encontraron los datasets locales. Por favor ejecuta en tu terminal: `python -c \"import libpysal; libpysal.examples.fetch_all()\"` para descargarlos automáticamente.")
+except FileNotFoundError as e:
+    st.error(f"No se encontró el archivo de datos: {str(e)}")
+    st.info("Asegúrate de que los datasets estén en el directorio 'datasets' junto con app.py")
 except Exception as e:
     st.error(f"Ocurrió un error: {str(e)}")
     import traceback
